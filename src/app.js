@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import anime from 'animejs/lib/anime.es.js'
+import randomColor from 'randomcolor'
 import * as eva from 'eva-icons'
 
 eva.replace({
@@ -27,11 +28,107 @@ let props = {
 		backgroundPosition: 0,
 }
 
+let svg = document.querySelector('object')
+console.log("🚀 ~ file: app.js:32 ~ svg:", svg)
+let mc = svg.getSVGDocument()
+console.log("🚀 ~ file: app.js:33 ~ mc:", mc)
+
 $(function() {
+	let widthView = (screen.height < screen.width ?  screen.height : screen.width)* 2
+	console.log("🚀 ~ file: app.js:38 ~ widthView:", widthView)
+	let leftTimeout, rightTimeout
+	$('.nav-item.nav-left').on('mousedown touchstart', (e) => {
+		leftTimeout = setInterval(() => {
+			let translateX = props.translateX
+			let backgroundPosition = props.backgroundPosition
+			if (transition.right === true) {
+				transition.left = transition.right
+			}
+			if (transition.left === false) {
+				if (current_section >= 0 && current_section < total_sections) {
+					props.translateX = (translateX > 0 && translateX <= widthView) ? translateX - steps.translateX : 0
+					transition.left = (current_section > 0 && translateX === 0)
+				} 
+				props.backgroundPosition = (current_section === 0) ? 0 : props.backgroundPosition
+				transition.right = false
+			} else {
+	
+					let currentBGPosition = (current_section)*maxBGPosition
+					props.backgroundPosition = (Math.abs(backgroundPosition) >= 0) ? backgroundPosition + steps.backgroundPosition : currentBGPosition
+					props.translateX = (translateX <= widthView) ? translateX + steps.translateX : 2160
+					transition.left = translateX <= widthView
+					transition.right = false
+					current_section -= current_section >= 0 && transition.left && Math.abs(backgroundPosition) > 0 && maxBGPosition &&  Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
+			}
+			console.log(props, current_section, transition)
+			anime({
+					targets: '.space-invader',
+					translateX: props.translateX,
+					easing: 'linear',
+					duration: 150,
+					delay: 0,
+			})
+			anime({
+					targets: '#app',
+					backgroundPositionX: backgroundPosition,
+					easing: 'linear',
+					duration: 150,
+					delay: 0,
+			})
+		}, 25)
+	}).bind('mouseup mouseleave touchend', (e) => {
+		clearInterval(leftTimeout)
+	})
+	$('.nav-item.nav-right').on('mousedown touchstart', (e) => {
+		rightTimeout = setInterval(() => {
+			let translateX = props.translateX
+			let backgroundPosition = props.backgroundPosition
+			if (transition.right === false) {
+				if (current_section >= 0 && current_section < total_sections) {
+					props.translateX = (translateX >= 0 && translateX <= 2160) ? translateX + steps.translateX : 2160
+					transition.right = translateX === 2160 && current_section+1 < total_sections
+				} 
+				transition.left = false
+				props.backgroundPosition = (current_section+1 % total_sections === 0) ? (current_section + 1)*maxBGPosition : props.backgroundPosition
+			} else {
+					let lookahead_section = current_section + 1
+					let currentBGPosition = lookahead_section === total_sections ? lookahead_section*maxBGPosition : lookahead_section*maxBGPosition
+					props.backgroundPosition = (backgroundPosition < currentBGPosition) ? backgroundPosition - steps.backgroundPosition : 0
+					props.translateX = (translateX >= 0) ? translateX - steps.translateX : 0
+					transition.right = translateX >= 0
+					transition.left = current_section+1 < total_sections ? !transition.right : false
+					current_section += current_section+1 < total_sections && transition.right && Math.abs(backgroundPosition) > 0 && Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
+			}
+			console.log(props, current_section, transition)
+			anime({
+					targets: '.space-invader',
+					translateX: props.translateX,
+					easing: 'linear',
+					duration: 150,
+					delay: 0,
+			})
+			anime({
+					targets: '#app',
+					backgroundPositionX: backgroundPosition,
+					easing: 'linear',
+					duration: 150,
+					delay: 0,
+			})
+		}, 25)
+	}).bind('mouseup mouseleave touchend', (e) => {
+		clearInterval(rightTimeout)
+	})
+
+	anime({
+		target: mc,
+		fill: randomColor({ luminosity: 'dark' })
+	})
     document.onkeydown = (e) => {
 			let code = e.key
 			let translateX = props.translateX
 			let backgroundPosition = props.backgroundPosition
+
+			
 			switch(code) {
 					case "ArrowLeft": // left
 					case "a": // left
