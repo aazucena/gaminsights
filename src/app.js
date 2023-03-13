@@ -28,10 +28,7 @@ let props = {
 		backgroundPosition: 0,
 }
 
-let svg = document.querySelector('object')
-console.log("🚀 ~ file: app.js:32 ~ svg:", svg)
-let mc = svg.getSVGDocument()
-console.log("🚀 ~ file: app.js:33 ~ mc:", mc)
+let counter = 0
 
 $(function() {
 	let widthView = (screen.height < screen.width ?  screen.height : screen.width)* 2
@@ -60,7 +57,6 @@ $(function() {
 					transition.right = false
 					current_section -= current_section >= 0 && transition.left && Math.abs(backgroundPosition) > 0 && maxBGPosition &&  Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
 			}
-			console.log(props, current_section, transition)
 			anime({
 					targets: '.space-invader',
 					translateX: props.translateX,
@@ -75,6 +71,9 @@ $(function() {
 					duration: 150,
 					delay: 0,
 			})
+		counter = counter - 1 > 0 ? counter - 1 : 0
+		$('.nav-item.nav-indicator').html(`<span>${current_section+1}</span>`)
+		console.log(current_section, counter)
 		}, 25)
 	}).bind('mouseup mouseleave touchend', (e) => {
 		clearInterval(leftTimeout)
@@ -99,7 +98,6 @@ $(function() {
 					transition.left = current_section+1 < total_sections ? !transition.right : false
 					current_section += current_section+1 < total_sections && transition.right && Math.abs(backgroundPosition) > 0 && Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
 			}
-			console.log(props, current_section, transition)
 			anime({
 					targets: '.space-invader',
 					translateX: props.translateX,
@@ -114,24 +112,23 @@ $(function() {
 					duration: 150,
 					delay: 0,
 			})
-		}, 25)
+		counter = counter + 1 <= 216 * (total_sections - 1) ? counter + 1 : 216 * (total_sections - 1)
+		$('.nav-item.nav-indicator').html(`<span>${current_section+1}</span>`)
+		console.log(current_section, counter)
+	}, 25)
 	}).bind('mouseup mouseleave touchend', (e) => {
 		clearInterval(rightTimeout)
 	})
 
-	anime({
-		target: mc,
-		fill: randomColor({ luminosity: 'dark' })
-	})
-    document.onkeydown = (e) => {
-			let code = e.key
-			let translateX = props.translateX
-			let backgroundPosition = props.backgroundPosition
+	document.onkeydown = (e) => {
+		let code = e.key
+		let translateX = props.translateX
+		let backgroundPosition = props.backgroundPosition
 
-			
-			switch(code) {
-					case "ArrowLeft": // left
-					case "a": // left
+		
+		switch(code) {
+				case "ArrowLeft": // left
+				case "a": // left
 					if (transition.right === true) {
 						transition.left = transition.right
 					}
@@ -151,10 +148,12 @@ $(function() {
 							transition.right = false
 							current_section -= current_section >= 0 && transition.left && Math.abs(backgroundPosition) > 0 && maxBGPosition &&  Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
 					}
-						break
-	
-					case "ArrowRight": // right
-					case "d": // right
+					counter = counter - 1 >= 0 ? counter - 1 : 0
+					console.log(current_section, counter)
+					break
+
+				case "ArrowRight": // right
+				case "d": // right
 					if (transition.right === false) {
 						if (current_section >= 0 && current_section < total_sections) {
 							props.translateX = (translateX >= 0 && translateX <= 2160) ? translateX + steps.translateX : 2160
@@ -171,25 +170,30 @@ $(function() {
 							transition.left = current_section+1 < total_sections ? !transition.right : false
 							current_section += current_section+1 < total_sections && transition.right && Math.abs(backgroundPosition) > 0 && Math.abs(backgroundPosition) % maxBGPosition === 0 ? 1 : 0
 					}
-						break
-	
-					default: 
-						break
-			}
-			console.log(props, current_section, transition)
-			anime({
-					targets: '.space-invader',
-					translateX: props.translateX,
-					easing: 'linear',
-					duration: 150,
-					delay: 0,
-			})
-			anime({
-					targets: '#app',
-					backgroundPositionX: backgroundPosition,
-					easing: 'linear',
-					duration: 150,
-					delay: 0,
-			})
-    }
+					counter = counter + 1 < 216 * (total_sections - 1) ? counter + 1 : 216 * (total_sections - 1)
+					console.log(current_section, counter)
+					break
+
+				default: 
+					break
+		}
+
+		$('.nav-item.nav-indicator').html(`<span>${current_section+1}</span>`)
+		anime({
+				targets: '.space-invader',
+				translateX: props.translateX,
+				easing: 'linear',
+				duration: 150,
+				delay: 0,
+		})
+		anime({
+				targets: '#app',
+				backgroundPositionX: backgroundPosition,
+				easing: 'linear',
+				duration: 150,
+				delay: 0,
+		})
+	}
+	$('.nav-item.nav-indicator').html(`<span>${current_section+1}</span>`)
+
 })
