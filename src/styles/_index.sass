@@ -1,0 +1,40 @@
+@import "_functions"
+@import "_mixins"
+@import "_utilities"
+@import "_variables"
+// @import "./_root.scss"
+
+	
+body
+	height: 100%
+	margin: 0
+
+#app
+	background: linear-gradient(to top, rgba(0, 0, 0, 87.5%) 75%, rgba(0, 0, 0, 98.5%) 100%), url(https://www.nasa.gov/images/content/627360main_potw1209a.jpg)
+	background-size: fit
+	background-blend-mode: multiply
+.space-invader
+	width: 20vmin
+	padding: 0
+	height: 100vh * calc(3 / 16)
+	diplsay: flex
+	justify-content: flex-start
+.ground
+	width: 100%
+	min-height: 10vh
+	background: transparent
+.infographic
+	display: flex
+	min-height: 100vh
+	flex-direction: column
+	justify-content: space-between
+	overflow: hidden
+.info-main
+	display: flex
+	flex-direction: column
+	justify-content: flex-start
+	
+.info-content
+	display: flex
+	flex-direction: column
+	justify-content: flex-end

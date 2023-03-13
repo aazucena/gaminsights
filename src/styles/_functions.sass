@@ -1,0 +1,33 @@
+@function brightness-helper($color)
+	$red: red($color) * 299
+	$green: green($color) * 587
+	$blue: blue($color) * 114
+	$rgb: $red + $green + $blue
+	@return round($rgb / 1000)
+
+
+@function color-contrast($color)
+	$brightness: brightness-helper($color)
+	$luminosity: brightness-helper(#fff)
+	$half-lum: $luminosity/2
+
+	@if abs($brightness) < ($half-lum)
+		@return white
+	@else
+		@return black
+
+
+@function filter-color-contrast($color)
+	$brightness: brightness-helper($color)
+	$luminosity: brightness-helper(#fff)
+	$half-lum: $luminosity/2
+
+	@if abs($brightness) < ($half-lum) 
+		@return brightness(0%) invert(1)
+	@else
+		@return brightness(0%) invert(0)
+	
+
+
+@function button-hover-color($color) 
+	@return $color
