@@ -1,6 +1,15 @@
 import $ from 'jquery'
-
 import anime from 'animejs/lib/anime.es.js'
+import * as eva from 'eva-icons'
+
+eva.replace({
+	height: '48px',
+	width: '48px',
+	animation: {
+    type: 'pulse', 
+  }
+})
+
 let total_sections = 8
 let current_section = 0
 let maxBGPosition = 216
@@ -20,16 +29,17 @@ let props = {
 
 $(function() {
     document.onkeydown = (e) => {
-			let code = e.keyCode || e.which
+			let code = e.key
 			let translateX = props.translateX
 			let backgroundPosition = props.backgroundPosition
 			switch(code) {
-					case 37: // left
+					case "ArrowLeft": // left
+					case "a": // left
 					if (transition.right === true) {
 						transition.left = transition.right
 					}
 					if (transition.left === false) {
-						if (current_section > 0 && current_section < total_sections) {
+						if (current_section >= 0 && current_section < total_sections) {
 							props.translateX = (translateX > 0 && translateX <= 2160) ? translateX - steps.translateX : 0
 							transition.left = (current_section > 0 && translateX === 0)
 						} 
@@ -46,7 +56,8 @@ $(function() {
 					}
 						break
 	
-					case 39: // right
+					case "ArrowRight": // right
+					case "d": // right
 					if (transition.right === false) {
 						if (current_section >= 0 && current_section < total_sections) {
 							props.translateX = (translateX >= 0 && translateX <= 2160) ? translateX + steps.translateX : 2160
