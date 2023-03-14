@@ -3,31 +3,39 @@
 	$green: green($color) * 587
 	$blue: blue($color) * 114
 	$rgb: $red + $green + $blue
-	@return round($rgb / 1000)
-
+	@return round(calc($rgb / 1000))
 
 @function color-contrast($color)
 	$brightness: brightness-helper($color)
 	$luminosity: brightness-helper(#fff)
-	$half-lum: $luminosity/2
+	$half-lum: calc($luminosity/2)
 
 	@if abs($brightness) < ($half-lum)
 		@return white
 	@else
 		@return black
 
-
 @function filter-color-contrast($color)
 	$brightness: brightness-helper($color)
 	$luminosity: brightness-helper(#fff)
-	$half-lum: $luminosity/2
+	$half-lum: calc($luminosity/2)
 
-	@if abs($brightness) < ($half-lum) 
+	@if abs($brightness) < ($half-lum)
 		@return brightness(0%) invert(1)
 	@else
 		@return brightness(0%) invert(0)
-	
 
 
-@function button-hover-color($color) 
-	@return $color
+/* @refererences: https://getbootstrap.com/docs/5.2/customize/sass/#colors */
+
+// Tint a color: mix a color with white
+@function tint-color($color, $weight)
+	@return mix(white, $color, $weight)
+
+// Shade a color: mix a color with black
+@function shade-color($color, $weight)
+	@return mix(black, $color, $weight)
+
+// Shade the color if the weight is positive, else tint it
+@function shift-color($color, $weight)
+	@return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight))

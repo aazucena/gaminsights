@@ -3,82 +3,11 @@
 @import "_utilities"
 @import "_fonts"
 @import "_variables"
+@import "_defaults"
 // @import "./_root.scss"
 
-
-	
-body
-	height: 100%
-	margin: 0
-
-#app
-	background: linear-gradient(to top, rgba(0, 0, 0, 87.5%) 75%, rgba(0, 0, 0, 98.5%) 100%), url(https://www.nasa.gov/images/content/627360main_potw1209a.jpg)
-	background-size: fit
-	background-blend-mode: multiply
-	font-family: 'MPLUS1p', sans-serif
-.space-invader
-	width: 20vmin
-	padding: 0
-	height: 100vh * calc(3 / 16)
-	diplsay: flex
-	justify-content: flex-start
-.ground
-	width: 100%
-	min-height: 10vh
-	padding: 0rem 1.75rem !important
-	justify-content: center !important
-	background: transparent
-	& > .nav-menu
-		display: flex
-		flex-direction: row
-		justify-content: space-evenly
-		align-items: center
-		gap: 1rem
-		& > .nav-item
-			padding: 0.75rem
-			display: flex
-			flex-direction: row
-			justify-content: center
-			align-items: center
-			&.nav-indicator
-				font-size: 1.25rem
-.infographic
-	display: flex
-	min-height: 100vh
-	flex-direction: column
-	justify-content: space-between
-	overflow: hidden
-.info-main
-	display: flex
-	flex-direction: column
-	justify-content: flex-start
-	
-.info-content
-	display: flex
-	flex-direction: column
-	justify-content: flex-end
-
-.navbar
-	display: flex
-	flex-direction: row
-	justify-content: flex-end
-	align-items: center
-	padding: 1rem 1.75rem
-	color: white
-	& > .nav-menu
-		display: flex
-		flex-direction: row
-		justify-content: space-evenly
-		align-items: center
-		gap: 1rem
-		& > .nav-item
-			padding: 0.75rem
-			display: flex
-			flex-direction: row
-			justify-content: center
-			align-items: center
-			& > i 
-				& > .eva
-					fill: rgba(255, 255, 255, 0.5)
-				&:hover > .eva
-					fill: white  !important
+@import 'components/space-invader'
+@import 'components/infographic'
+@import 'components/overlay'
+@import 'components/navbar'
+@import 'components/footer-navbar'

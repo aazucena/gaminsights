@@ -1,0 +1,84 @@
+.overlay
+	display: none
+	&.close
+		display: none
+	&.open
+		color: white !important	
+		display: block
+		position: absolute
+		height: 100%
+		width: 100%
+		left: 0
+		z-index: 1000
+		top: 0
+		background: rgba(0, 0, 0, 0.75)
+		& > .overlay-close-button
+			display: block
+			position: absolute
+			top: 0
+			right: 0
+			& > i 
+				padding: 1rem
+				& > .eva
+					fill: rgba(255, 255, 255, 0.5)
+				&:hover > .eva
+					fill: white  !important
+		& > .overlay-container
+			height: 100%
+			width: 100%
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			&:has( .overlay-subtitle)
+				gap: 2.5rem !important
+			&:has( .list-menu)
+				gap: 2rem !important
+			& > .overlay-header,
+			& > .overlay-body,
+			& > .overlay-footer
+				width: 100% 
+				display: flex
+				flex-direction: row
+				justify-content: center
+				& > *
+					display: flex
+					flex-direction: row
+					justify-content: center
+			& > .overlay-header
+				flex-direction: column !important
+				min-height: 15vmin !important
+				font-size: 4rem
+				font-weight: bold
+				& > .overlay-subtitle
+					font-size: 2rem
+					font-weight: 400
+			& > .overlay-body
+				min-height: 7.5vmin !important
+				flex-direction: column !important
+				align-items: flex-start
+				min-width: 50vmin 
+				font-size: 2rem
+				&:has( .list-menu)
+					font-size: 1.5rem
+					font-weight: 400
+					width: 50%
+				& > .list-menu
+					margin-left: 1.5rem
+					display: flex
+					flex-direction: column !important
+			& > .overlay-footer
+				min-height: 5vmin !important
+				font-size: 1.25rem
+				& > .overlay-footer-button
+					background-color: $main-color
+					border-radius: 0.25rem
+					min-width: 10vmin
+					color: color-contrast($main-color)
+					padding: 1rem
+					pointer-events: auto !important
+					&:hover
+						$hover-color: tint-color($main-color, 25%)
+						background-color: $hover-color
+						color: color-contrast($hover-color)
+						pointer-events: auto !important
