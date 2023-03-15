@@ -135,10 +135,16 @@ const overlay = ({
 	}) => {
 		switch (type) {
 			case 'landing':
-				$(`.${classPrefix}-footer-button`).on('click', eventHandlers?.onClose);
+				$(`.${classPrefix}-footer-button`).on('click', ($el) => {
+					setOverlayStatus({ status: 'close' });
+					eventHandlers?.onClose($el)
+				});
 				break;
 			case 'instructions':
-				$(`.${classPrefix}-footer-button`).on('click', eventHandlers?.onClose);
+				$(`.${classPrefix}-footer-button`).on('click', ($el) => {
+					setOverlayStatus({ status: 'close' });
+					eventHandlers?.onClose($el)
+				});
 				break;
 			case 'help':
 				break;

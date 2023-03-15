@@ -37,7 +37,6 @@ overlay({
 	},
 	events: {
 		onClose: ($el) => {
-			setOverlayStatus({ status: 'close' });
 			infographic({ visible: true });
 		},
 	},
