@@ -96,6 +96,15 @@ const controls = ({
 				reports({ item: data[current_section] });
 			}
 		}
+		$('.nav-item.nav-rewind').show()
+		$('.nav-item.nav-forward').show()
+		
+		if (current_section === 0) {
+			$('.nav-item.nav-rewind').hide()
+		}
+		if (current_section === total_sections - 1) {
+			$('.nav-item.nav-forward').hide()
+		}
         console.log("🚀 ~ file: controls.js:162 ~ $ ~ props.translateX:", props.translateX, widthView)
 		counter = counter - 1 > 0 ? counter - 1 : 0;
 	};
@@ -139,6 +148,15 @@ const controls = ({
 				current_section += 1;
 				reports({ item: data[current_section] });
 			}
+		}
+		$('.nav-item.nav-rewind').show()
+		$('.nav-item.nav-forward').show()
+		
+		if (current_section === 0) {
+			$('.nav-item.nav-rewind').hide()
+		}
+		if (current_section === total_sections - 1) {
+			$('.nav-item.nav-forward').hide()
 		}
         console.log("🚀 ~ file: controls.js:162 ~ $ ~ props.translateX:", props.translateX, widthView)
 		counter =
@@ -234,6 +252,17 @@ const controls = ({
 				`<span>${data[current_section].title}</span>`
 			);
             reports({ item: data[current_section] });
+
+			$('.nav-item.nav-rewind').show()
+			$('.nav-item.nav-forward').show()
+			
+			if (current_section === 0) {
+				$('.nav-item.nav-rewind').hide()
+			}
+			if (current_section === total_sections - 1) {
+				$('.nav-item.nav-forward').hide()
+			}
+
 		});
 		$('.nav-item.nav-forward').on('click', () => {
 			current_section += current_section + 1 < total_sections ? 1 : 0;
@@ -252,6 +281,16 @@ const controls = ({
 				`<span>${data[current_section].title}</span>`
 			);
             reports({ item: data[current_section] });
+			$('.nav-item.nav-rewind').show()
+			$('.nav-item.nav-forward').show()
+			
+
+			if (current_section === 0) {
+				$('.nav-item.nav-rewind').hide()
+			}
+			if (current_section === total_sections - 1) {
+				$('.nav-item.nav-forward').hide()
+			}
 		});
 		document.onkeydown = (e) => {
 			let code = e.key;

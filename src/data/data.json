@@ -2360,7 +2360,28 @@
 		"title": "Credits",
 		"description": "Here are all the resources and credits used for the inforgraph",
 		"comments": null,
-		"references": [],
+		"references": [
+			{
+				"title": "Wikipedia",
+				"url": "https://en.wikipedia.org/wiki/History_of_video_games"
+			},
+			{
+				"title": "LG",
+				"url": "https://www.lg.com/ca_en/gaming/a-brief-history-of-gaming"
+			},
+			{
+				"title": "PriceCharting",
+				"url": "https://www.pricecharting.com/"
+			},
+			{
+				"title": "Museum of Play",
+				"url": "https://www.museumofplay.org/video-game-history-timeline/"
+			},
+			{
+				"title": "Concept Ventures",
+				"url": "https://www.conceptventures.vc/news/the-history-evolution-of-video-games"
+			}
+		],
 		"contents": [],
 		"reports": []
 	}

@@ -4,6 +4,8 @@
 	justify-content: flex-start
 	align-items: center
 	padding: 3rem
+	max-width: 100vmin
+	gap: 1.5rem
 	& > .report-title
 		display: flex
 		justify-content: center
@@ -13,6 +15,7 @@
 	& > .report-divider
 		color: white 
 		width: 10vmin
+		margin-bottom: 2rem
 	& > .report-description
 		$color: shade-color($main-color, 50%)
 		background-color: $color
@@ -21,24 +24,27 @@
 		display: flex
 		flex-direction: row
 		justify-content: center
-		font-size: 1.25rem
+		font-size: 1.75rem
 		font-weight: normal
-		padding: 1rem 2rem
-		margin: 1.5rem 0rem
-	& > .report-content
-		$color: shade-color($main-color, 50%)
-		background-color: $color
-		color: color-contrast($color)
-		border-radius: .5rem
-		display: flex
 		padding: 2rem
+	& > .report-content
+		display: flex
 		flex-direction: row
 		justify-content: center
+		width: 100%
 		gap: 1rem
+		&:not(:has( .report-list-content))
+			justify-content: flex-start
 		& > .report-section
+			$color: shade-color($main-color, 	50%)
+			border-radius: .5rem
+			padding: 2rem
+			width: 100%
 			display: flex
 			flex-direction: column
 			justify-content: flex-start
+			background-color: $color
+			color: color-contrast($color)
 			align-items: flex-start
 			gap: 1.5rem
 			& > .report-section-title
@@ -51,12 +57,17 @@
 				align-items: center
 				font-size: 1rem
 				font-weight: normal
+				padding: 1rem
 				& > .report-section-list
 					display: flex
 					flex-direction: column
 					justify-content: space-evenly
 					align-items: flex-start
 					gap: 1.5rem
+					& > .report-section-list-title
+						color: rgba(color-contrast($color), 50%)
+						font-size: 2.75rem
+						font-weight: 700
 					& > .report-list-item
 						display: flex
 						flex-direction: column
@@ -65,7 +76,53 @@
 						& > .report-list-title
 							font-size: 2.75rem
 							font-weight: 700
+						& > a.report-list-value
+							color: color-contrast($color)
+							text-decoration: none
+							list-style-type: '-'
+							&:hover
+								color: tint-color($color, 45%)
+							&:focus
+								color: tint-color($color, 60%)	
+						& > .report-list-value
+							padding-left: 1rem
+							font-size: 1.75rem
+							font-weight: 500
 						& > .report-list-content
+							padding-left: 1rem
 							font-size: 1.25rem
 							font-weight: 400 !important
+				& > .report-section-cards
+					display: flex
+					flex-direction: column
+					justify-content: space-between
+					gap: 1.5rem
+					& > .report-section-cards-title
+						color: rgba(color-contrast($color), 50%)
+						background-color: rgba($color, 50%)
+						font-size: 2.75rem
+						font-weight: 700
+					& > .report-cards-container
+						padding: 2rem
+						display: flex
+						flex-direction: row
+						flex-wrap: wrap
+						justify-content: flex-start
+						gap: 1rem
+						flex-wrap: flex
+						align-items: center
+						& > .report-card
+							background-color: shade-color($main-color, 	62.5%)
+							color: color-contrast(shade-color($main-color, 	62.5%))
+							padding: 1rem
+							gap: 1rem
+							display: flex
+							flex-direction: column
+							align-items: center
+							border-radius: 0.75rem 
+							& > .report-card-title
+								font-size: 1.25rem
+								font-weight: bold
+
+
 
