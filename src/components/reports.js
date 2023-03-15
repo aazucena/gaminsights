@@ -96,7 +96,7 @@ const report = ({ classPrefix = 'report', item = data[0] }) => {
 				.map((reference) => {
 					let sub_title = reference.title.toLowerCase().replace(/\s+/gim, '_');
 					return `<div class="${classPrefix}-list-item" id="${sub_title}">
-							<a class="${classPrefix}-list-value" href="${reference.url}">${reference.title}</a>
+							<a class="${classPrefix}-list-value" href="${reference.url}" target="_blank">${reference.title}</a>
 						</div>`;
 				})
 				.join('\n');
