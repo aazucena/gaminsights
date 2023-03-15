@@ -47,9 +47,9 @@
 					justify-content: center
 			& > .overlay-header
 				flex-direction: column !important
-				min-height: 15vmin !important
 				font-size: 4rem
 				font-weight: bold
+				margin-bottom: 0.75rem
 				& > .overlay-subtitle
 					font-size: 2rem
 					font-weight: 400
@@ -71,14 +71,37 @@
 				min-height: 5vmin !important
 				font-size: 1.25rem
 				& > .overlay-footer-button
+					display: flex
+					flex-direction: row
+					justify-content: center
+					align-items: center
+					text-align: center
 					background-color: $main-color
 					border-radius: 0.25rem
 					min-width: 10vmin
+					font-weight: 600
+					font-size: 1.5rem
 					color: color-contrast($main-color)
 					padding: 1rem
 					pointer-events: auto !important
+					cursor: pointer
 					&:hover
 						$hover-color: tint-color($main-color, 25%)
 						background-color: $hover-color
 						color: color-contrast($hover-color)
 						pointer-events: auto !important
+
+
+
+@media screen and (max-width: 768px) 
+	.overlay
+		&.open
+			& > .overlay-container
+				& > .overlay-body
+					&:has( .list-menu)
+						font-size: 1.5rem
+						font-weight: 400
+						width: 75%
+				& > .overlay-footer
+					& > .overlay-footer-button
+						font-size: 3.5rem

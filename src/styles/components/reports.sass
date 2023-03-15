@@ -1,0 +1,71 @@
+.report
+	display: flex
+	flex-direction: column
+	justify-content: flex-start
+	align-items: center
+	padding: 3rem
+	& > .report-title
+		display: flex
+		justify-content: center
+		font-size: 6rem
+		width: 100%
+		font-weight: 900
+	& > .report-divider
+		color: white 
+		width: 10vmin
+	& > .report-description
+		$color: shade-color($main-color, 50%)
+		background-color: $color
+		color: color-contrast($color)
+		border-radius: .5rem
+		display: flex
+		flex-direction: row
+		justify-content: center
+		font-size: 1.25rem
+		font-weight: normal
+		padding: 1rem 2rem
+		margin: 1.5rem 0rem
+	& > .report-content
+		$color: shade-color($main-color, 50%)
+		background-color: $color
+		color: color-contrast($color)
+		border-radius: .5rem
+		display: flex
+		padding: 2rem
+		flex-direction: row
+		justify-content: center
+		gap: 1rem
+		& > .report-section
+			display: flex
+			flex-direction: column
+			justify-content: flex-start
+			align-items: flex-start
+			gap: 1.5rem
+			& > .report-section-title
+				font-size: 3rem
+				font-weight: 700
+			& > .report-section-content
+				display: flex
+				flex-direction: column
+				justify-content: flex-start
+				align-items: center
+				font-size: 1rem
+				font-weight: normal
+				& > .report-section-list
+					display: flex
+					flex-direction: column
+					justify-content: space-evenly
+					align-items: flex-start
+					gap: 1.5rem
+					& > .report-list-item
+						display: flex
+						flex-direction: column
+						justify-content: flex-start
+						height: 100%
+						& > .report-list-title
+							font-size: 2.75rem
+							font-weight: 700
+						& > .report-list-content
+							font-size: 1.25rem
+							font-weight: 400 !important
+
