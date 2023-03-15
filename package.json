@@ -9,8 +9,8 @@
     "start": "parcel",
     "clean": "rimraf public",
     "prebuild": "rimraf public && rimraf .parcel-cache && rimraf dist",
-    "build": "parcel build --dist-dir public",
-    "predeploy": "rimraf public && parcel build --dist-dir public --public-url \"https://aazucena.github.io/gaminsights/\"",
+    "build": "parcel build --dist-dir public && cpx  \"src/assets/**/*\" public/assets",
+    "predeploy": "rimraf public && parcel build --dist-dir public --public-url \"https://aazucena.github.io/gaminsights/\" && cpx \"src/assets/**/*\" public/assets",
     "deploy": "gh-pages -d public"
   },
   "keywords": [],
@@ -21,6 +21,7 @@
     "animejs": "^3.2.1",
     "axios": "^1.3.4",
     "big.js": "^6.2.1",
+    "cpx": "^1.5.0",
     "eva-icons": "^1.1.3",
     "font-color-contrast": "^11.1.0",
     "gh-pages": "^5.0.0",

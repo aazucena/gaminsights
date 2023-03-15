@@ -13,7 +13,7 @@ const overlay = ({
 } = {}) => {
 	let root_component = $('.' + classPrefix);
 
-	setOverlayStatus = ({ status = 'close' } = {}) => {
+	let setOverlayStatus = ({ status = 'close' } = {}) => {
 		switch (status) {
 			case 'open':
 				$('.' + classPrefix).addClass('open');
@@ -32,7 +32,7 @@ const overlay = ({
 		}
 	};
 
-	setContent = ({
+	let setContent = ({
 		data = {
 			title: 'Title',
 			body: 'Body',
@@ -125,7 +125,7 @@ const overlay = ({
 		});
 	};
 
-	setFunctionality = ({
+	let setFunctionality = ({
 		eventHandlers = {
 			onClose: ($el) => {
 				setOverlayStatus({ status: 'close' });
@@ -152,7 +152,7 @@ const overlay = ({
 		$(`.${classPrefix}-close-button`).on('click', eventHandlers?.onClose);
 	};
 
-	run = () => {
+	let run = () => {
 		$(function () {
 			setOverlayStatus({ status });
 			setContent({ data: contents });
