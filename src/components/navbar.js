@@ -3,6 +3,20 @@ import anime from 'animejs/lib/anime.es.js';
 import * as eva from 'eva-icons';
 import { arrayDefaults } from '../utilities/index.js';
 
+/**
+ * Navbar Component
+ *
+ * @param {*} {
+ * 	items = [
+ * 		{
+ * 			name: 'settings',
+ * 			url: null,
+ * 			icon: 'settings-2-outline',
+ * 			weight: 1,
+ * 		},
+ * 	],
+ * }
+ */
 const navbar = ({
 	items = [
 		{

@@ -3,6 +3,19 @@ import anime from 'animejs/lib/anime.es.js';
 import * as eva from 'eva-icons';
 import { arrayDefaults } from '../utilities/index.js';
 
+
+/**
+ * Overlay Component
+ *
+ * @param {*} [{
+ * 	classPrefix = 'overlay',
+ * 	status = 'open',
+ * 	closeButton = false,
+ * 	type = 'landing',
+ * 	contents,
+ * 	events,
+ * }={}]
+ */
 const overlay = ({
 	classPrefix = 'overlay',
 	status = 'open',
@@ -13,6 +26,11 @@ const overlay = ({
 } = {}) => {
 	let root_component = $('.' + classPrefix);
 
+	/**
+	 * Set the State of the OVerlay
+	 *
+	 * @param {*} [{ status = 'close' }={}]
+	 */
 	let setOverlayStatus = ({ status = 'close' } = {}) => {
 		switch (status) {
 			case 'open':
@@ -31,7 +49,18 @@ const overlay = ({
 				break;
 		}
 	};
-
+	/**
+	 * Set the content of the OVerlay
+	 *
+	 * @param {*} [{
+	 * 		data = {
+	 * 			title: 'Title',
+	 * 			body: 'Body',
+	 * 			list: [],
+	 * 			footer: 'Footer',
+	 * 		},
+	 * 	}={}]
+	 */
 	let setContent = ({
 		data = {
 			title: 'Title',
@@ -125,6 +154,18 @@ const overlay = ({
 		});
 	};
 
+	/**
+	 * Set the Event Functionalities of the Overlay
+	 *
+	 * @param {*} {
+	 * 		eventHandlers = {
+	 * 			onClose: ($el) => {
+	 * 				setOverlayStatus({ status: 'close' });
+	 * 			},
+	 * 			onClick: ($el) => {},
+	 * 		},
+	 * 	}
+	 */
 	let setFunctionality = ({
 		eventHandlers = {
 			onClose: ($el) => {
@@ -158,6 +199,10 @@ const overlay = ({
 		$(`.${classPrefix}-close-button`).on('click', eventHandlers?.onClose);
 	};
 
+	/**
+	 * Renders the Overlay Component 
+	 *
+	 */
 	let run = () => {
 		$(function () {
 			setOverlayStatus({ status });

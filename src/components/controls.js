@@ -5,6 +5,13 @@ import * as eva from 'eva-icons';
 import reports from './reports.js';
 import data from '/src/data/data.json';
 
+/**
+ * Function that set the offset value based on viewport size
+ *
+ * @param {*} width
+ * @param {number} [value=1]
+ * @return {*} 
+ */
 let setOffset = (width, value) => {
 	switch (true) {
 		case width <= 768:
@@ -17,6 +24,13 @@ let setOffset = (width, value) => {
 			return value;
 	}
 };
+/**
+ * Function that set the BackgroundPosition  Increment value based on viewport size
+ *
+ * @param {*} width
+ * @param {number} [value=1]
+ * @return {*} 
+ */
 let setBackgroundIncrement = (width, value = 1) => {
 	switch (true) {
 		case width <= 768:
@@ -30,6 +44,14 @@ let setBackgroundIncrement = (width, value = 1) => {
 	}
 };
 
+/**
+ * Controls Component
+ *
+ * @param {*} [{
+ * 	width = $(window).width(),
+ * 	offset = 0,
+ * }={}]
+ */
 const controls = ({
 	width = $(window).width(),
 	offset = 0,
@@ -57,7 +79,10 @@ const controls = ({
 	};
 
 	let counter = 0;
-
+	/**
+	 * Updates the values when moving left
+	 *
+	 */
 	let moveLeft = () => {
 		let translateX = props.translateX;
 		let backgroundPosition = props.backgroundPosition;
@@ -108,6 +133,11 @@ const controls = ({
         console.log("🚀 ~ file: controls.js:162 ~ $ ~ props.translateX:", props.translateX, widthView)
 		counter = counter - 1 > 0 ? counter - 1 : 0;
 	};
+
+	/**
+	 * Updates the values when moving right
+	 *
+	 */
 	let moveRight = () => {
 		let translateX = props.translateX;
 		let backgroundPosition = props.backgroundPosition;

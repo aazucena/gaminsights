@@ -4,6 +4,12 @@ import * as eva from 'eva-icons';
 import { arrayDefaults, getResource } from '../utilities/index.js';
 import data from '/src/data/data.json';
 
+
+/**
+ * Report Component 
+ *
+ * @param {*} { classPrefix = 'report', item = data[0] }
+ */
 const report = ({ classPrefix = 'report', item = data[0] }) => {
 	let className = '.' + classPrefix;
 	$('.info-body').html();

@@ -3,7 +3,15 @@ import anime from 'animejs/lib/anime.es.js'
 import * as eva from 'eva-icons'
 import { arrayDefaults, getResource } from '../utilities/index.js'
 
-
+/**
+ * Infographic Component
+ *
+ * @param {*} { 
+ *         classPrefix = 'info',
+ *         defaultClass = 'infographic',
+ *         visible = false,
+ *     }
+ */
 const infographic = (
     { 
         classPrefix = 'info',
